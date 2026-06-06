@@ -1,0 +1,38 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd ~/projects/hianime
+            
+            # Pull latest changes from the main branch
+            git pull origin main
+            
+            # Install dependencies (in case of any updates)
+            npm install
+            
+            npm run build
+            
+            # Remove old build files and copy new build output to the Caddy web root directory
+            rm -rf /var/www/hianime_clone/*
+            cp -r dist/* /var/www/hianime_clone/
+            
+            # Validate Caddyfile configuration
+            sudo caddy validate --config /etc/caddy/Caddyfile
+            
+            # Reload Caddy gracefully to apply changes
+            sudo systemctl reload caddy
