@@ -4,30 +4,20 @@ import MovieDetails from "./pages/MovieDetails";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
 } from "react-router-dom";
 import Watch from "./pages/Watch";
 import Similar from "./pages/Similar";
-import Register from "./pages/auth/register";
-import Login from "./pages/auth/login";
-import Guard from "./Guard";
-import GuardAuth from "./GuardAuth";
+
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import UserProfile from "./pages/auth/Profile";
 import SearchPage from "./pages/Search";
-import AdminAuth from "./admin/auth/AdminAuth";
 import Admin from "./admin/Admin";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Guard>
-        <Mainpage />
-      </Guard>
-    ),
+    element: <Mainpage />,
   },
   {
     path: "/movie/:mid",
@@ -50,22 +40,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/auth/login",
-    element: (
-      <GuardAuth>
-        <Login />
-      </GuardAuth>
-    ),
-  },
-  {
-    path: "/auth/register",
-    element: (
-      <GuardAuth>
-        <Register />
-      </GuardAuth>
-    ),
-  },
-  {
     path: "/search",
     element: (
 
@@ -75,9 +49,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin/*",
-    element: (<GuardAuth>
-        <AdminAuth><Admin/></AdminAuth>
-      </GuardAuth>),
+    element: <Admin />,
     // children: [
     //   {
     //     index: true, 

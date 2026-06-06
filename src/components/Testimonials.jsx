@@ -88,7 +88,7 @@ const Testimonials = () => {
     <div className={`showcomments ${active ? "active" : ""}`}>
       <div className="emptybox">
         <div className="leftimg">
-          <img src="https://hianime.to/images/discussion.png" alt="" />
+          <img src="discussion.png" alt="" />
         </div>
         <div className="rightcontent">
           <div className="topbar">

@@ -23,7 +23,7 @@ const Mainpage = () => {
       <div className="flex items-center gap-2 mt-16 mb-8 w-full p-4">
         <div className="gif h-16 w-16">
           <img
-            src="https://hianime.to/images/share-icon.gif"
+            src="luffy-monkey-d-luffy.gif"
             alt=""
             className="h-16 w-16 rounded-full"
           />
